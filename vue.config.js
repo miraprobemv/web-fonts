@@ -14,7 +14,6 @@ module.exports = defineConfig({
               const relativePath = production.module.resourceResolveData.relativePath.replace('./src/assets/', '');
               return relativePath;
             },
-            publicPath: 'https://miraprobemv.github.io/web-fonts/',
           }
         },
       ],
