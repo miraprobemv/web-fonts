@@ -2,11 +2,13 @@
   <div class="font-container">
     <slot v-bind:font="font" v-bind:is-expanded="false" v-bind:expand="expand"></slot>
   </div>
-  <div v-if="isExpanded" class="font-container--dialog-backend">
-    <div class="font-container--dialog">
-      <slot v-bind:font="font" v-bind:is-expanded="true" v-bind:expand="expand"></slot>
-      <slot name="extended" v-bind:font="font"></slot>
-    </div>
+  <div v-show="isExpandedBackend" class="font-container--dialog-backend">
+    <Transition name="bounce" v-on:after-leave="onAfterLeave">
+      <div v-if="isExpanded" class="font-container--dialog">
+        <slot v-bind:font="font" v-bind:is-expanded="true" v-bind:expand="expand"></slot>
+        <slot name="extended" v-bind:font="font"></slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -19,12 +21,17 @@ export default {
   data() {
     return {
       isExpanded: false,
+      isExpandedBackend: false,
     }
   },
   methods: {
     expand(isExpanded) {
+      if (isExpanded) this.isExpandedBackend = true;
       this.isExpanded = isExpanded;
-    }
+    },
+    onAfterLeave() {
+      this.isExpandedBackend = false;
+    },
   }
 }
 </script>
@@ -51,5 +58,50 @@ export default {
   left: 10px;
   right: 10px;
   bottom: 10px;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-out 0.3s;
+}
+@keyframes bounce-in {
+  0% {
+    top: 45%;
+    left: 45%;
+    right: 45%;
+    bottom: 45%;
+    overflow: hidden;
+  }
+  50% {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  100% {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    overflow: auto;
+  }
+}
+@keyframes bounce-out {
+  0% {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    overflow: hidden;
+  }
+  100% {
+    top: 45%;
+    left: 45%;
+    right: 45%;
+    bottom: 45%;
+    overflow: hidden;
+  }
 }
 </style>
