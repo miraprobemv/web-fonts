@@ -1,27 +1,58 @@
 <template>
   <div class="font-container">
+      <FontHeader
+        v-bind:font="font"
+        v-bind:font-name="fontName"
+        v-bind:lang-name="langName" v-bind:alt-lang-name="altLangName"
+        v-bind:is-expanded="false"
+        v-bind:expand="expand" />
+      <FontSampleInput v-bind:font="font" v-bind:default-font-size="fontSize"
+        v-model:font-size="fontSizeValue" v-model:text="textValue" />
     <slot v-bind:font="font" v-bind:is-expanded="false" v-bind:expand="expand"></slot>
   </div>
   <div v-show="isExpandedBackend" class="font-container--dialog-backend">
     <Transition name="bounce" v-on:after-leave="onAfterLeave">
       <div v-if="isExpanded" class="font-container--dialog">
-        <slot v-bind:font="font" v-bind:is-expanded="true" v-bind:expand="expand"></slot>
-        <slot name="extended" v-bind:font="font"></slot>
+        <FontHeader
+          v-bind:font="font"
+          v-bind:font-name="fontName"
+          v-bind:lang-name="langName" v-bind:alt-lang-name="altLangName"
+          v-bind:is-expanded="true"
+          v-bind:expand="expand" />
+        <FontSampleInput v-bind:font="font" v-bind:default-font-size="fontSize"
+          v-model:font-size="fontSizeValue" v-model:text="textValue" />
+        <slot></slot>
       </div>
     </Transition>
   </div>
 </template>
 
 <script>
+import FontSampleInput from './FontSampleInput.vue'
+import FontHeader from './FontHeader.vue'
 export default {
   name: 'FontContainer',
+  components: {
+      FontHeader,
+      FontSampleInput,
+  },
   props: {
     font: String,
+    fontName: String,
+    langName: String,
+    altLangName: String,
+    defaultText: String,
+    fontSize: {
+        type: Number,
+        default: 36,
+    }
   },
   data() {
     return {
       isExpanded: false,
       isExpandedBackend: false,
+      textValue: this.$props.defaultText,
+      fontSizeValue: this.$props.fontSize,
     }
   },
   methods: {
