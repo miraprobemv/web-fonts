@@ -3,10 +3,10 @@
     <h2>
       <span>{{ fontName }}</span>
       <span v-if="!!langName" v-bind:data-font="font">{{ langName }}</span>
-      <span v-else>{{ altLangName }}</span>
+      <span v-if="!!systemName" v-bind:data-font="font">{{ systemName }}</span>
       <button type="button" v-on:click="expandContainer">
         <span v-if="isExpanded">Close</span>
-        <span v-else>Expand</span>
+        <span v-else>Show details</span>
       </button>
     </h2>
   </div>
@@ -17,9 +17,9 @@ export default {
   name: 'FontHeader',
   props: {
     fontName: String,
-    langName: String,
-    altLangName: String,
     font: String,
+    langName: String,
+    systemName: String,
     isExpanded: Boolean,
     expand: Function,
   },
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .font-header {
   width: 100%;
 }

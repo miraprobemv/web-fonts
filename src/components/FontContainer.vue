@@ -1,35 +1,34 @@
 <template>
-  <div class="font-container">
+  <section class="font-container">
       <FontHeader
         v-bind:font="font"
         v-bind:font-name="fontName"
-        v-bind:lang-name="langName" v-bind:alt-lang-name="altLangName"
+        v-bind:lang-name="langName" v-bind:system-name="systemName"
         v-bind:is-expanded="false"
         v-bind:expand="expand" />
       <FontSampleInput v-bind:font="font" v-bind:default-font-size="fontSize"
         v-model:font-size="fontSizeValue" v-model:text="textValue" />
-    <slot v-bind:font="font" v-bind:is-expanded="false" v-bind:expand="expand"></slot>
-  </div>
+  </section>
   <div v-show="isExpandedBackend" class="font-container--dialog-backend">
     <Transition name="bounce" v-on:after-leave="onAfterLeave">
-      <div v-if="isExpanded" class="font-container--dialog">
+      <section v-if="isExpanded" class="font-container--dialog">
         <FontHeader
           v-bind:font="font"
           v-bind:font-name="fontName"
-          v-bind:lang-name="langName" v-bind:alt-lang-name="altLangName"
+          v-bind:lang-name="langName" v-bind:system-name="systemName"
           v-bind:is-expanded="true"
           v-bind:expand="expand" />
         <FontSampleInput v-bind:font="font" v-bind:default-font-size="fontSize"
           v-model:font-size="fontSizeValue" v-model:text="textValue" />
         <slot></slot>
-      </div>
+      </section>
     </Transition>
   </div>
 </template>
 
 <script>
-import FontSampleInput from './FontSampleInput.vue'
-import FontHeader from './FontHeader.vue'
+import FontSampleInput from '@/components/FontSampleInput.vue'
+import FontHeader from '@/components/FontHeader.vue'
 export default {
   name: 'FontContainer',
   components: {
@@ -40,7 +39,7 @@ export default {
     font: String,
     fontName: String,
     langName: String,
-    altLangName: String,
+    systemName: String,
     defaultText: String,
     fontSize: {
         type: Number,
@@ -72,8 +71,8 @@ export default {
   width: 100%;
   height: max-content;
   border: solid 1px #bdc0c2;
-  transition: all 1000ms 0s ease;
 }
+
 .font-container--dialog-backend {
   position: fixed;
   background-color: #44454667;
@@ -82,6 +81,7 @@ export default {
   right: 0px;
   bottom: 0px;
 }
+
 .font-container--dialog {
   position: fixed;
   border: solid 1px #2e9ee9;

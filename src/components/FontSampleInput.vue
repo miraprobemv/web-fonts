@@ -1,5 +1,5 @@
 <template>
-    <div class="hello">
+    <div class="input">
         <div>
             <input type="text" class="input--original" v-model="textValue" />
             <label class="input--size--container">Font size: <input type="number" class="input--size"
@@ -50,7 +50,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .input--original {
     width: calc(100% - 220px - 60px);
