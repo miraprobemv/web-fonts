@@ -84,7 +84,10 @@ export default {
 
 .font-container--dialog {
   position: fixed;
-  border: solid 1px #2e9ee9;
+  box-shadow: inset 0 0 2px 1px #abc9e7;
+  background-color: rgb(249, 250, 252);
+  border-radius: 12px;
+  padding: 12px 4px 12px;
   top: 10px;
   left: 10px;
   right: 10px;
