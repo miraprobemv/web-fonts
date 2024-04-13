@@ -1,10 +1,10 @@
 <template>
   <div class="font-header">
     <h2>
-      <span>{{ fontName }}</span>
-      <span v-if="!!langName" v-bind:data-font="font">{{ langName }}</span>
-      <span v-if="!!systemName" v-bind:data-font="font">{{ systemName }}</span>
-      <button type="button" v-on:click="expandContainer">
+      <span class="font-name">{{ fontName }}</span>
+      <span v-if="!!langName" v-bind:class="font">{{ langName }}</span>
+      <span v-if="!!systemName" v-bind:class="font">{{ systemName }}</span>
+      <button type="button" class="action-button" v-on:click="expandContainer">
         <span v-if="isExpanded">Close</span>
         <span v-else>Show details</span>
       </button>
@@ -34,6 +34,12 @@ export default {
 <style scoped>
 .font-header {
   width: 100%;
+}
+.font-name {
+  margin-right: 1ex;
+}
+.action-button {
+  margin-left: 1ex;
 }
 </style>
   

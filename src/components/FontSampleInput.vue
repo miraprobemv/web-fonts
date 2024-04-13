@@ -8,7 +8,7 @@
                 v-bind:disabled="fontSizeValue == defaultFontSize">Reset</button>
         </div>
         <div>
-            <input type="text" class="input--web-font" v-model="textValue" v-bind:data-font="font"
+            <input type="text" class="input--web-font" v-model="textValue" v-bind:class="font"
                 v-bind:style="{ 'font-size': `${fontSizeValue}px` }" />
         </div>
     </div>

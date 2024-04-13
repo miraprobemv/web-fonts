@@ -20,7 +20,7 @@
           v-bind:expand="expand" />
         <FontSampleInput v-bind:font="font" v-bind:default-font-size="fontSize"
           v-model:font-size="fontSizeValue" v-model:text="textValue" />
-        <slot></slot>
+        <div class="font-container--dialog--spec"><slot></slot></div>
       </section>
     </Transition>
   </div>
@@ -83,6 +83,8 @@ export default {
 }
 
 .font-container--dialog {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   box-shadow: inset 0 0 2px 1px #abc9e7;
   background-color: rgb(249, 250, 252);
@@ -95,7 +97,7 @@ export default {
 }
 
 .bounce-enter-active {
-  animation: bounce-in 0.5s;
+  animation: bounce-in 0.3s;
 }
 .bounce-leave-active {
   animation: bounce-out 0.3s;
@@ -137,5 +139,10 @@ export default {
     bottom: 45%;
     overflow: hidden;
   }
+}
+
+.font-container--dialog--spec {
+  flex-grow: 1;
+  overflow: hidden;
 }
 </style>
