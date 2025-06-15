@@ -6,8 +6,8 @@
         v-bind:lang-name="langName" v-bind:system-name="systemName"
         v-bind:is-expanded="false"
         v-bind:expand="expand" />
-      <FontSampleInput v-bind:font="font" v-bind:default-font-size="fontSize"
-        v-model:font-size="fontSizeValue" v-model:text="textValue" />
+      <FontSampleInput v-bind:font="font"
+        font-size="36" v-model:text="textValue" />
   </section>
   <div v-show="isExpandedBackend" class="font-container--dialog-backend">
     <Transition name="bounce" v-on:after-leave="onAfterLeave">
@@ -89,11 +89,11 @@ export default {
   box-shadow: inset 0 0 2px 1px #abc9e7;
   background-color: rgb(249, 250, 252);
   border-radius: 12px;
-  padding: 12px 4px 12px;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
+  padding: 12px 12px;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
 }
 
 .bounce-enter-active {
@@ -104,40 +104,36 @@ export default {
 }
 @keyframes bounce-in {
   0% {
-    top: 45%;
-    left: 45%;
-    right: 45%;
-    bottom: 45%;
-    overflow: hidden;
+    top: 20px;
+    left: calc(20px + 100%);
+    right: calc(20px - 100%);
+    bottom: 20px;
   }
   50% {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 20px;
+    left: calc(20px - 10px);
+    right: calc(20px + 10px);
+    bottom: 20px;
   }
   100% {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    overflow: auto;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
   }
 }
 @keyframes bounce-out {
   0% {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    overflow: hidden;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
   }
   100% {
-    top: 45%;
-    left: 45%;
-    right: 45%;
-    bottom: 45%;
-    overflow: hidden;
+    top: 20px;
+    left: calc(20px + 100%);
+    right: calc(20px - 100%);
+    bottom: 20px;
   }
 }
 

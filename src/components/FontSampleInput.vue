@@ -1,11 +1,13 @@
 <template>
     <div class="input">
         <div>
-            <input type="text" class="input--original" v-model="textValue" />
-            <label class="input--size--container">Font size: <input type="number" class="input--size"
-                    v-model="fontSizeValue" /></label>
-            <button type="button" class="input--size--reset" v-on:click="resetFontSize"
-                v-bind:disabled="fontSizeValue == defaultFontSize">Reset</button>
+            <input type="text" v-bind:class="(defaultFontSize != null) ? 'input--original-sizing' : 'input--original'" v-model="textValue" />
+            <template v-if="defaultFontSize != null">
+                <label class="input--size--container">Font size: <input type="number" class="input--size"
+                        v-model="fontSizeValue" /></label>
+                <button type="button" class="input--size--reset" v-on:click="resetFontSize"
+                    v-bind:disabled="fontSizeValue == defaultFontSize">Reset</button>
+            </template>
         </div>
         <div>
             <input type="text" class="input--web-font" v-model="textValue" v-bind:class="font"
@@ -52,6 +54,10 @@ export default {
 
 <style scoped>
 .input--original {
+    width: calc(100%);
+}
+
+.input--original-sizing {
     width: calc(100% - 220px - 60px);
 }
 
