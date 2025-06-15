@@ -19,7 +19,8 @@
         <slot name="character-list"></slot>
       </template>
       <template v-if="currentTab === 'usage'">
-        <pre><SshPre language="css" label="example.css">@font-face {
+        <div class="tabs-content--usage">
+          <pre><SshPre language="css" label="example.css">@font-face {
     font-family: '{{ sampleClassName }}';
 <slot name="usage"></slot>
 }
@@ -27,7 +28,8 @@
 .{{ sampleClassName }} {
     font-family: '{{ sampleClassName }}';
 }</SshPre></pre>
-        <pre><SshPre language="css" label="example.html">&lt;p class="{{ sampleClassName }}"&gt;Your text here.&lt;/p&gt;</SshPre></pre>
+          <pre><SshPre language="html" label="example.html">&lt;p class="{{ sampleClassName }}"&gt;Your text here.&lt;/p&gt;</SshPre></pre>
+        </div>
       </template>
     </div>
   </section>
@@ -67,9 +69,86 @@ export default {
 .font-header {
   width: 100%;
 }
+
+.tabs-menu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 8px 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.tabs-menu--tab-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+}
+.tabs-menu--tab-item._active {
+  border-bottom: 2px solid #0550ae;
+  color: #0550ae;
+}
+.tabs-menu--tab-item:hover {
+  background-color: #f0f0f0;
+}
+
 .tabs-content {
   flex-grow: 1;
   overflow: auto;
 }
+.tabs-content--usage {
+  padding: 0px 16px;
+}
+
+.ssh-pre {
+  color: #1f2328;
+}
+
+.ssh-pre[data-type=html] .punctuation {
+  color: #1f2328;
+}
+
+.ssh-pre[data-type=html] .tag-name {
+  color: #0550ae;
+}
+
+.ssh-pre[data-type=html] .attribute {
+  color: #6639ba;
+}
+
+.ssh-pre[data-type=html] .quote {
+  color: #0a3069;
+}
+
+
+.ssh-pre[data-type=css] .punctuation {
+  color: #1f2328;
+}
+
+.ssh-pre[data-type=css] .selector {
+  color: #6639ba;
+}
+
+.ssh-pre[data-type=css] .attribute {
+  color: #0550ae;
+}
+
+.ssh-pre[data-type=css] .attribute.keyword {
+  color: #0550ae;
+}
+
+.ssh-pre[data-type=css] .value {
+  color: #0550ae;
+}
+
+.ssh-pre[data-type=css] .value.keyword {
+  color: #0550ae;
+}
+
+.ssh-pre[data-type=css] .quote {
+  color: #0a3069;
+}
+
+
 </style>
   

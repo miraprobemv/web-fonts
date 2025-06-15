@@ -1,6 +1,6 @@
 <template>
   <div class="font-header">
-    <h2>
+    <h2 class="font-header--title">
       <span class="font-name">{{ fontName }}</span>
       <span v-if="!!langName" v-bind:class="font">{{ langName }}</span>
       <span v-if="!!systemName" v-bind:class="font">{{ systemName }}</span>
@@ -35,11 +35,16 @@ export default {
 .font-header {
   width: 100%;
 }
+.font-header--title {
+  display: flex;
+  justify-content: space-between;
+}
 .font-name {
   margin-right: 1ex;
 }
 .action-button {
-  margin-left: 1ex;
+  margin-left: auto;
+  margin-right: 1ex;
 }
 </style>
   

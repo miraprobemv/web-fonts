@@ -68,9 +68,14 @@ export default {
 
 <style>
 .font-container {
+  padding: 8px 16px;
   width: 100%;
   height: max-content;
-  border: solid 1px #bdc0c2;
+  /* border: solid 1px #bdc0c2; */
+}
+
+.input {
+  margin: 0 8px;
 }
 
 .font-container--dialog-backend {
@@ -89,7 +94,7 @@ export default {
   box-shadow: inset 0 0 2px 1px #abc9e7;
   background-color: rgb(249, 250, 252);
   border-radius: 12px;
-  padding: 12px 12px;
+  padding: 12px 24px;
   top: 20px;
   left: 20px;
   right: 20px;
